@@ -1,0 +1,27 @@
+$primary : #A259FF;
+
+
+
+
+.header {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    left: 0;
+    height: 100px;
+    .navBtn {
+        margin:0 2rem;
+        font-weight: 600;
+        border-radius: .5rem;
+        padding: 5px 1rem;
+        background-color: $primary;
+        cursor: pointer;
+        &:hover {
+            transition: all 0.2s ease-in-out;
+            opacity: .7;
+        }
+    }
+}
