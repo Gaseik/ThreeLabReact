@@ -9,31 +9,29 @@ import {
   Link
 } from "react-router-dom";
 import "./index.css";
+import Cube from './Cube.tsx'
+import LIne from './Line.tsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+    children:[
+      {
+        path: "/cube",
+        element: <Cube/>,
+      },
+      {
+        path: "/line",
+        element: <LIne/>,
+      },
+    ]
   },
-  {
-    path: "/cube",
-    element: <App/>,
-  },
-  {
-    path: "/line",
-    element: <App/>,
-  },
+ 
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <div>
-      <div className='header'>
-        <Link to="/cube" className='navBtn'>CUBE</Link>
-        <Link to="/line" className='navBtn'>LINE</Link>
-      </div>
-      <RouterProvider router={router} />
-    </div>
-    
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
