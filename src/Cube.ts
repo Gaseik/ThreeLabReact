@@ -40,7 +40,7 @@ export function render (div: HTMLElement) {
 }
 
 export function changeColor () {
-    let i = Math.floor(Math.random()*3);
+    let i = Math.floor(Math.random()*5);
     switch(i){
         case 0 :
             cube.material.color.setHex(0xffffff)
@@ -50,6 +50,12 @@ export function changeColor () {
             break;
         case 2 :
             cube.material.color.setHex(0xA259FF)
+            break;
+        case 3 :
+            cube.material.color.setHex(0xd7137f)
+            break;
+        case 4 :
+            cube.material.color.setHex(0x13d761)
             break;
         default:
             cube.material.color.setHex(0xf22fff)
