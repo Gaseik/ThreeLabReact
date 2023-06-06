@@ -2,22 +2,24 @@ import * as THREE from 'three';
 import WebGL from 'three/addons/capabilities/WebGL.js';
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera( 75, 500/ 500, 0.1, 1000 );
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setSize( 500,500 );
 
+const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+camera.position.z = 5;
 
 
 export function render (div: HTMLElement) {
     div.appendChild( renderer.domElement );
 
-    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    const cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
+    
 
-    camera.position.z = 5;
+  
     function animate() {
         requestAnimationFrame( animate );
         cube.rotation.x += 0.01;
@@ -37,6 +39,20 @@ export function render (div: HTMLElement) {
     }
 }
 
-function changeColor () {
-
+export function changeColor () {
+    let i = Math.floor(Math.random()*3);
+    switch(i){
+        case 0 :
+            cube.material.color.setHex(0xffffff)
+            break;
+        case 1 :
+            cube.material.color.setHex(0xfb4807)
+            break;
+        case 2 :
+            cube.material.color.setHex(0xA259FF)
+            break;
+        default:
+            cube.material.color.setHex(0xf22fff)
+    }
+    
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
-import { render } from "./Cube"
-
+import { changeColor, render } from "./Cube"
+import './style/Cube.scss'
 function Cube () {
     const cubeRef = useRef(null)
     useEffect(()=>{
@@ -12,7 +12,9 @@ function Cube () {
     return (
         <div className="cube" >
             <div className="controlBar">
-
+                <div className="changeColor btn" onClick={changeColor}>
+                    Change Color
+                </div>
             </div>
             <div className="renderArea" ref={cubeRef}>
 

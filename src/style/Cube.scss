@@ -1,0 +1,22 @@
+// @import '../index.scss';
+$primary : #A259FF;
+
+.cube {
+    .controlBar {
+        .changeColor.btn {
+            margin:0 2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: .5rem;
+            color:#fff;
+            padding: 5px 1rem;
+            background-color: $primary;
+            cursor: pointer;
+            width: 120px;
+            &:hover {
+                transition: all 0.2s ease-in-out;
+                opacity: .7;
+            }
+        }   
+    }
+}

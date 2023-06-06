@@ -12,7 +12,9 @@ function Line () {
     return (
         <div className="line" >
             <div className="controlBar">
-
+                <div className="changeColor btn">
+                    Change Color
+                </div>
             </div>
             <div className="renderArea" ref={lineRef}>
 
