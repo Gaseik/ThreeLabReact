@@ -6,13 +6,16 @@ $primary : #A259FF;
     width: 100%;
     display: flex;
     justify-content: center;
+    .dnone {
+        display: none;
+    }
     .controlBar {
         display: flex;
         flex-direction: column;
         position: absolute;
         left:0;
         .changeColor.btn {
-            margin:0 2rem;
+            margin:1rem 2rem;
             font-weight: 600;
             text-decoration: none;
             border-radius: .5rem;
@@ -20,7 +23,7 @@ $primary : #A259FF;
             padding: 5px 1rem;
             background-color: $primary;
             cursor: pointer;
-            width: 120px;
+            width: 150px;
             &:hover {
                 transition: all 0.2s ease-in-out;
                 opacity: .7;
