@@ -8,12 +8,30 @@ import {
   controlMode,
 } from "./Cube";
 import "./style/Cube.scss";
+import * as dat from 'dat.gui';
+
+
+
+
+
+const options = ["translate", "rotate", "scale"];
+const gui = new dat.GUI({name: 'My GUI'});
+// var folder1 = gui.addFolder('Flow Field');
+var person = {name: 'Sam'};
+gui.add(person, 'name');
+// gui.add(person, 'Mode');
 
 function Cube() {
-  const options = ["translate", "rotate", "scale"];
+  
   const cubeRef = useRef(null);
   const [model, setModel] = useState(false);
   const [control, setControl] = useState(options[0]);
+ 
+  useEffect(() => {
+   
+  }, []);
+
+
   useEffect(() => {
     if (cubeRef.current !== null) {
       render(cubeRef.current);
@@ -35,6 +53,7 @@ function Cube() {
   }
   return (
     <div className="cube">
+      
       <div className="controlBar">
         <div className="changeColor btn" onClick={modelChange}>
           Change Model
