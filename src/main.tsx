@@ -6,6 +6,7 @@ import './_index.scss'
 import {
   createBrowserRouter,
   RouterProvider,
+  redirect,
   Link
 } from "react-router-dom";
 import "./index.css";
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App/>,
     children:[
+      {
+        path: "/",
+        element: <Cube/>,
+      },
       {
         path: "/cube",
         element: <Cube/>,

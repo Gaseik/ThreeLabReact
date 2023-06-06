@@ -1,9 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { changeColor, changeTexture, modelLoader, render } from "./Cube";
+import {
+  addEnvirment,
+  changeColor,
+  changeTexture,
+  modelLoader,
+  render,
+  controlMode,
+} from "./Cube";
 import "./style/Cube.scss";
+
 function Cube() {
+  const options = ["translate", "rotate", "scale"];
   const cubeRef = useRef(null);
   const [model, setModel] = useState(false);
+  const [control, setControl] = useState(options[0]);
   useEffect(() => {
     if (cubeRef.current !== null) {
       render(cubeRef.current);
@@ -14,11 +24,26 @@ function Cube() {
     modelLoader(model);
     setModel(!model);
   }
+
+  function handelCotrol() {
+    let next =
+      options.indexOf(control) === options.length - 1
+        ? 0
+        : options.indexOf(control) + 1;
+    setControl(options[next]);
+    controlMode(options[next]);
+  }
   return (
     <div className="cube">
       <div className="controlBar">
         <div className="changeColor btn" onClick={modelChange}>
           Change Model
+        </div>
+        <div className="changeColor btn" onClick={addEnvirment}>
+          Change Env
+        </div>
+        <div className="changeColor btn" onClick={handelCotrol}>
+          {control} mode
         </div>
         <div
           className={!model ? "changeColor btn" : "dnone"}
