@@ -12,6 +12,7 @@ import {
 import "./index.css";
 import Cube from './Cube.tsx'
 import LIne from './Line.tsx'
+import LabPage from './labPage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -30,13 +31,17 @@ const router = createBrowserRouter([
         path: "/line",
         element: <LIne/>,
       },
+      {
+        path: "/lab",
+        element: <LabPage/>,
+      },
     ]
   },
  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+ 
     <RouterProvider router={router} />
-  </React.StrictMode>,
+ 
 )
