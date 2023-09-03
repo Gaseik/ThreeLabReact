@@ -16,7 +16,14 @@ function LabPage () {
                 </div>
             </div>
             <div className="renderArea" ref={pageRef}>
-
+                <div className="controlArea">
+                    <div className="btn1 btn">
+                        <div className="line"></div>
+                    </div>
+                    <div className="btn2 btn"></div>
+                    <div className="btn3 btn"></div>
+                    <div className="btn4 btn"></div>
+                </div>
             </div>
         </div>
     )

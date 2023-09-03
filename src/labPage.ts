@@ -91,6 +91,9 @@ export function pageTemplate(div: HTMLElement) {
   const particleMaterial = new THREE.PointsMaterial({
     color: 0xffffff,
     size: 0.05, // 粒子大小，可以根據需要調整
+    opacity: 0.5, // 不透明度，使光束看起來有一些透明感
+    transparent: true, // 啟用透明度
+    blending: THREE.AdditiveBlending, // 使用加法混合模式，增強光束效果
   });
 
   // 創建粒子的位置數據
