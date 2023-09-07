@@ -11,11 +11,12 @@ function LabPage () {
     return (
         <div className="line" >
             <div className="controlBar">
-                <div className="changeColor btn">
+                {/* <div className="changeColor btn">
                     Change Color
-                </div>
+                </div> */}
             </div>
             <div className="renderArea" ref={pageRef}>
+                <div className="comming">COMMING SOON</div>
                 <div className="controlArea">
                     <div className="btn1 btn">
                         <div className="line"></div>
