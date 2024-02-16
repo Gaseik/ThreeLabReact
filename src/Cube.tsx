@@ -9,6 +9,7 @@ import {
 } from "./Cube";
 import "./style/Cube.scss";
 import * as dat from 'dat.gui';
+import Stats from 'stats.js'; // 引入 stats.js 库
 
 
 
@@ -19,6 +20,9 @@ const gui = new dat.GUI({name: 'My GUI'});
 // var folder1 = gui.addFolder('Flow Field');
 var person = {name: 'Sam'};
 gui.add(person, 'name');
+const fpsMonitor = { fps: 0 }; // 创建一个对象来存储 FPS
+gui.add(fpsMonitor, 'fps', 0, 1000); // 向 'Stats' 文件夹添加 FPS 监视器
+
 // gui.add(person, 'Mode');
 
 function Cube() {
@@ -35,6 +39,10 @@ function Cube() {
   useEffect(() => {
     if (cubeRef.current !== null) {
       render(cubeRef.current);
+      // const stats = new Stats();
+      // stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+      // document.body.appendChild(stats.dom);
+      
     }
   }, []);
 
@@ -53,7 +61,7 @@ function Cube() {
   }
   return (
     <div className="cube">
-      
+      <div className="renderArea" ref={cubeRef}></div>
       <div className="controlBar">
         <div className="changeColor btn" onClick={modelChange}>
           Change Model
@@ -77,7 +85,7 @@ function Cube() {
           Change Texture
         </div>
       </div>
-      <div className="renderArea" ref={cubeRef}></div>
+    
     </div>
   );
 }

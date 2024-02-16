@@ -4,6 +4,7 @@ import { TransformControls } from "three/addons/controls/TransformControls.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { EXRLoader } from "three/addons/loaders/EXRLoader.js";
+import Stats from 'stats.js'; // 引入 stats.js 库
 
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -41,9 +42,9 @@ let modelReady = false;
 const clock = new THREE.Clock();
 
 
-
-
-
+const stats = new Stats();
+stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild(stats.dom);
 
 
 
@@ -56,7 +57,7 @@ export function modelLoader(model: boolean) {
     control.attach(cube)
   } else {
     loader.load(
-      "/an_animated_cat.glb",
+      "/WebAR_Model_test.glb",
       function (gltf) {
         gltf.scene.scale.set(0.1, 0.1, 0.1);
 
@@ -70,6 +71,8 @@ export function modelLoader(model: boolean) {
         animationActions.push(animationAction);
         animationAction.play();
         modelReady = true;
+      
+
       },
       undefined,
       function (error) {
@@ -82,22 +85,31 @@ export function modelLoader(model: boolean) {
 function renders() {
 
   renderer.render(scene, camera);
+  try {
+    // 尝试访问变量，如果变量已被初始化，这段代码将不会抛出错误
+    stats.update();
+  } catch (error) {
+    // 如果变量未被初始化，捕获到错误并在这里处理
+    console.error('stats 未被初始化:', error);
+  }
+
 }
 
 export function render(div: HTMLElement) {
-  div.appendChild(renderer.domElement);
 
+  div.appendChild(renderer.domElement);
   function animate() {
     requestAnimationFrame(animate);
     cube.rotation.x = 0.01;
     cube.rotation.y = 0.01;
     if (modelReady) mixer.update(clock.getDelta());
-   
+  
     renders();
   }
   if (WebGL.isWebGLAvailable()) {
     // Initiate function or other initializations here
     animate();
+    
   } else {
     const warning = WebGL.getWebGLErrorMessage();
     div.appendChild(warning);
