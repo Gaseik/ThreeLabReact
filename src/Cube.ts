@@ -48,18 +48,32 @@ document.body.appendChild(stats.dom);
 
 
 
-export function modelLoader(model: boolean) {
+export function modelLoader(model:number ) {
+  let arr = ['cube', 'WebAR_Model_test.glb' , 'drinks_240223_01.glb','J-BURGER_240223_01.glb']
   scene.remove.apply(scene, scene.children);
   scene.add(hemiLight);
-  if (model) {
+  if (arr[model] === 'cube') {
     scene.add(cube);
     scene.add(control);
     control.attach(cube)
   } else {
     loader.load(
-      "/WebAR_Model_test.glb",
+      "/"+arr[model],
       function (gltf) {
-        gltf.scene.scale.set(0.1, 0.1, 0.1);
+        switch(model){
+          case 1:
+            gltf.scene.scale.set(0.6, 0.6, 0.6);
+            break;
+          case 2:
+            gltf.scene.scale.set(0.6, 0.6, 0.6);
+            break;
+          case 3:
+            gltf.scene.scale.set(20, 20,20);
+            break;
+          default:
+            gltf.scene.scale.set(0.6, 0.6, 0.6);
+            break;
+        }
 
         scene.add(gltf.scene);
         scene.add(control);

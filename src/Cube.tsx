@@ -10,6 +10,7 @@ import {
 import "./style/Cube.scss";
 import * as dat from 'dat.gui';
 import Stats from 'stats.js'; // 引入 stats.js 库
+import { NumberKeyframeTrack } from "three";
 
 
 
@@ -28,14 +29,9 @@ gui.add(fpsMonitor, 'fps', 0, 1000); // 向 'Stats' 文件夹添加 FPS 监视�
 function Cube() {
   
   const cubeRef = useRef(null);
-  const [model, setModel] = useState(false);
+  const [model, setModel] = useState<number>(0);
   const [control, setControl] = useState(options[0]);
  
-  useEffect(() => {
-   
-  }, []);
-
-
   useEffect(() => {
     if (cubeRef.current !== null) {
       render(cubeRef.current);
@@ -47,8 +43,14 @@ function Cube() {
   }, []);
 
   function modelChange() {
-    modelLoader(model);
-    setModel(!model);
+    if(model%4===3){
+      modelLoader(0);
+      setModel(0);
+    }else{
+      
+    modelLoader(model+1);
+    setModel(model+1);
+    }
   }
 
   function handelCotrol() {
@@ -73,13 +75,13 @@ function Cube() {
           {control} mode
         </div>
         <div
-          className={!model ? "changeColor btn" : "dnone"}
+          className={model === 0 ? "changeColor btn" : "dnone"}
           onClick={changeColor}
         >
           Change Color
         </div>
         <div
-          className={!model ? "changeColor btn" : "dnone"}
+          className={model === 0 ? "changeColor btn" : "dnone"}
           onClick={changeTexture}
         >
           Change Texture
